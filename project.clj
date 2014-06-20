@@ -10,26 +10,23 @@
 
 
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [org.clojure/clojurescript "0.0-2156"]
-                 [org.clojure/google-closure-library "0.0-20140226-71326067"]
+                 [org.clojure/clojurescript "0.0-2234"]
                  [org.clojure/data.priority-map "0.0.5"]
-                 [lein-cljsbuild "1.0.2"]]
+                 [lein-cljsbuild "1.0.3"]]
   :url "https://github.com/aysylu/loom"
   :test-selectors {:default (fn [m] (not (:test-check-slow m)))
                    :all (constantly true)
                    :test-check-slow :test-check-slow}
   :profiles {:dev
              {:dependencies [[org.clojure/clojure "1.5.1"]
-                             [org.clojure/test.check "0.5.7"]
-                             [io.pedestal/pedestal.service "0.2.2"]
-                             [io.pedestal/pedestal.service-tools "0.2.2"]
-                             [enlive "1.1.5"]]
+                             [com.cemerick/double-check "0.5.7"]
+                             [com.cemerick/clojurescript.test "0.3.1"]]
               :plugins [[com.cemerick/austin "0.1.4"]]}}
   :aliases {"release" ["do" "clean," "with-profile" "default" "deploy" "clojars"]}
 
   :hooks [leiningen.cljsbuild]
   :plugins [[com.keminglabs/cljx "0.4.0"]
-            [lein-cljsbuild "1.0.2"]]
+            [lein-cljsbuild "1.0.3"]]
   :cljx {:builds [{:source-paths ["src/cljx"]
                    :output-path "target/generated/src/clj"
                    :rules :clj}
@@ -46,10 +43,12 @@
                {:dev {:source-paths ["src/clj" "target/generated/src/cljs"]
                       :compiler {:output-to "target/main.js"
                                  :optimizations :whitespace
-                                 :pretty-print true}}
+                                 :pretty-print true
+                                 :libs [""]}}
                 :test {:source-paths ["src/clj" "test/clj"
                                       "target/generated/src/cljs"
                                       "target/generated/test/cljs"]
                        :compiler {:output-to "target/unit-test.js"
                                   :optimizations :whitespace
-                                  :pretty-print true}}}})
+                                  :pretty-print true
+                                  :libs [""]}}}})
