@@ -1,7 +1,7 @@
 (ns loom.test.alg-generic
   (:require [loom.alg-generic :as lag]
             [clojure.set :as set]
-            #+clj [clojure.test :refer [deftest are]]
+            #+clj [clojure.test :refer [deftest are] :as t]
             #+cljs [cemerick.cljs.test :as t]
             [clojure.test.check :as tc]
             #+clj [clojure.test.check.clojure-test :refer [defspec]]

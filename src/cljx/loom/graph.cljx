@@ -456,7 +456,8 @@ on adjacency lists."
 
 (defn- call-or-return [f & args]
   (if (or (fn? f)
-          (and (instance? clojure.lang.IFn f) (seq args)))
+          (and #+clj (instance? clojure.lang.IFn f) #+cljs (satisfies? Fn f)
+               (seq args)))
     (apply f args)
     f))
 

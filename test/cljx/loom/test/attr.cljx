@@ -1,7 +1,10 @@
 (ns loom.test.attr
-  (:require [loom.graph :refer :all]
-            [loom.attr :refer :all]
-            [clojure.test :refer :all])
+  (:require [loom.graph :refer [digraph]]
+            [loom.attr :refer [attr add-attr
+                               add-attr-to-nodes
+                               add-attr-to-edges]]
+            #+clj [clojure.test :refer [deftest is] :as t]
+            #+cljs [cemerick.cljs.test :as t])
   #+cljs (:require-macros [cemerick.cljs.test :refer [deftest is]]))
 
 (deftest attr-graph-test
@@ -11,13 +14,13 @@
                 (add-attr 2 3 :label "edge label"))
         lg2 (-> g
                 (add-attr-to-nodes
-                 :label "node odd" [1 3 5])
+                  :label "node odd" [1 3 5])
                 (add-attr-to-nodes
-                 :label "node even" [2 4])
+                  :label "node even" [2 4])
                 (add-attr-to-edges
-                 :label "edge from node 2" [[2 3] [2 4]])
+                  :label "edge from node 2" [[2 3] [2 4]])
                 (add-attr-to-edges
-                 :label "edge to node 5" [[3 5] [4 5]]))]
+                  :label "edge to node 5" [[3 5] [4 5]]))]
     (is (= "node label" (attr lg1 1 :label)))
     (is (= "edge label" (attr lg1 2 3 :label)))
     (is (= "node odd" (attr lg2 1 :label)))
@@ -29,3 +32,7 @@
     (is (= "edge from node 2" (attr lg2 2 4 :label)))
     (is (= "edge to node 5" (attr lg2 3 5 :label)))
     (is (= "edge to node 5" (attr lg2 4 5 :label)))))
+
+(comment
+  (t/test-ns 'loom.test.attr)
+    )

@@ -1,4 +1,4 @@
-(defproject aysylu/loom "0.5.1-SNAPSHOT"
+(defproject aysylu/loom "0.5.1-cljx-SNAPSHOT"
   :description "Graph library for Clojure"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
@@ -12,6 +12,7 @@
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [org.clojure/clojurescript "0.0-2234"]
                  [org.clojure/data.priority-map "0.0.5"]
+                 [tailrecursion/cljs-priority-map "1.1.0"]
                  [lein-cljsbuild "1.0.3"]]
   :url "https://github.com/aysylu/loom"
   :test-selectors {:default (fn [m] (not (:test-check-slow m)))
